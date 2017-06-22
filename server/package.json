@@ -1,0 +1,49 @@
+{
+  "version": "0.1.0",
+  "name": "service-registry",
+  "main": "server.js",
+  "scripts": {
+    "eslint": "eslint ./ --fix",
+    "flow": "flow",
+    "cover": "istanbul cover jasmine",
+    "test": "jasmine",
+    "testci": "node jasmine-teamcity && flow",
+    "start": "pm2 flush && pm2 startOrRestart pm2.config.js --update-env && pm2 logs",
+    "server": "nodemon server.js"
+  },
+  "dependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-flow-strip-types": "^6.8.0",
+    "babel-polyfill": "^6.7.4",
+    "babel-preset-es2015-node6": "^0.4.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "boom": "^4.2.0",
+    "glue": "^4.1.0",
+    "good": "^7.1.0",
+    "good-console": "6.2.0",
+    "hapi": "^16.1.0",
+    "hapi-etags": "^0.1.0",
+    "hapi-swagger": "^7.5.0",
+    "inert": "^4.1.0",
+    "istanbul": "^1.0.0-alpha.2",
+    "jasmine": "^2.4.1",
+    "jasmine-reporters": "^2.2.0",
+    "joi": "^10.1.0",
+    "joi-date-extensions": "^1.0.1",
+    "lodash": "^4.17.4",
+    "md5": "^2.2.1",
+    "mockery": "^2.0.0",
+    "moment": "^2.17.1",
+    "winston": "^2.3.0",
+    "winston-daily-rotate-file": "^1.4.3"
+  },
+  "devDependencies": {
+    "@types/joi": "^10.0.0",
+    "@types/lodash": "^4.14.52",
+    "@types/winston": "^2.2.0",
+    "eslint": "^4.0.0",
+    "eslint-config-evolent": "^1.1.0",
+    "nodemon": "^1.11.0"
+  }
+}
