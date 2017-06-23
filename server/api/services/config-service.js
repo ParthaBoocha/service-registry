@@ -1,10 +1,22 @@
-'user strict';
+import ConfigFileStore from './config-file-store';
 
-async function get(serviceName) {
-  return {
-    host: 'localhost',
-    port: 8080
-  };
+async function get(service) {
+  if (service) {
+    return await ConfigFileStore.getOne(service);
+  } else {
+    return await ConfigFileStore.getAll();
+  }
 };
 
-export default { get };
+async function update(data) {
+  if (data && Array.isArray(data)) {
+    await ConfigFileStore.updateMany(data);
+    return;
+  }
+  await ConfigFileStore.updateOne(data);
+};
+
+export default {
+  get,
+  update
+};

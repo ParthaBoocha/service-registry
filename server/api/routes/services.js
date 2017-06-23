@@ -1,5 +1,3 @@
-'use strict';
-
 import ConfigService from '../services/config-service';
 
 exports.register = (server, options, next) => {
@@ -13,9 +11,16 @@ exports.register = (server, options, next) => {
     },
     {
       method: 'GET',
+      path: '/config/{service?}',
+      handler: async(request) => {
+        return await ConfigService.get(request.params.service);
+      }
+    },
+    {
+      method: ['PUT', 'POST'],
       path: '/config',
       handler: async(request) => {
-        return await ConfigService.get();
+        return await ConfigService.update(request.payload);
       }
     }
   ];
