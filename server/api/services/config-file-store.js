@@ -1,15 +1,6 @@
-let configs = [
-  {
-    service: 'foo',
-    url: 'localhost',
-    port: '8080'
-  },
-  {
-    service: 'bar',
-    url: 'somehost',
-    port: '5050'
-  }
-];
+import FileHelper from './file-helper';
+
+let configs = FileHelper.read();
 
 async function getOne(service) {
   return configs.find(s => s.service === service);
@@ -21,11 +12,12 @@ async function getAll() {
 
 async function updateMany(list) {
   list.forEach(item => {
-    updateOne(item);
+    updateOne(item, false);
   });
+  writeFile();
 }
 
-async function updateOne(item) {
+async function updateOne(item, shouldWriteFile = true) {
   let exists = configs.find(config => config.service === item.service);
   if (exists) {
     exists.url = item.url;
@@ -33,6 +25,13 @@ async function updateOne(item) {
   } else {
     configs = configs.concat(item);
   }
+  if (shouldWriteFile) {
+    writeFile();
+  }
+}
+
+async function writeFile() {
+  FileHelper.write(configs);
 }
 
 async function printConfigs() {
