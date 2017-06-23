@@ -17,7 +17,7 @@ exports.register = (server, options, next) => {
       }
     },
     {
-      method: 'POST',
+      method: ['PUT', 'POST'],
       path: '/config',
       handler: async(request) => {
         return await ConfigService.update(request.payload);
