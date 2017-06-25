@@ -11,8 +11,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-var App = () => {
-  function render() {
+class App extends React.Component {
+  render() {
     return (
       <div>Hello World</div>
     );
