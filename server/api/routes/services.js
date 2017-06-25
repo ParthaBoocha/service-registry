@@ -4,13 +4,6 @@ exports.register = (server, options, next) => {
   let routes = [
     {
       method: 'GET',
-      path: '/',
-      handler: request => {
-        return 'Hello';
-      }
-    },
-    {
-      method: 'GET',
       path: '/config/{service?}',
       handler: async(request) => {
         return await ConfigService.get(request.params.service);
