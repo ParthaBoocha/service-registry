@@ -2,7 +2,7 @@
 Service configuration and discovery
 
 ## Start server
-TODO: Fix needing two terminals
+TODO: Fix needing two terminals  
 `cd server`
 ### On first, start webpack in watch mode (default)
 `webpack`
