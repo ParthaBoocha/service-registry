@@ -8,8 +8,8 @@
     "cover": "istanbul cover jasmine",
     "test": "jasmine",
     "testci": "node jasmine-teamcity && flow",
-    "start": "webpack && pm2 flush && pm2 startOrRestart pm2.config.js --update-env && pm2 logs",
-    "server": "webpack && nodemon server.js"
+    "start": "pm2 flush && pm2 startOrRestart pm2.config.js --update-env && pm2 logs",
+    "server": "nodemon server.js"
   },
   "dependencies": {
     "autoprefixer": "^7.1.1",
