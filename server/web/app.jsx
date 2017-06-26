@@ -5,11 +5,12 @@ require('babel-polyfill');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ConfigComponent from './config-component';
 
 class App extends React.Component {
   render() {
     return (
-      <div>Hello World!</div>
+      <ConfigComponent />
     );
   }
 };
