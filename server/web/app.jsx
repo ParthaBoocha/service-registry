@@ -5,12 +5,15 @@ require('babel-polyfill');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ConfigComponent from './config-component';
+import ConfigList from './config-list';
 
 class App extends React.Component {
   render() {
     return (
-      <ConfigComponent />
+      <div>
+        <h1>Configuration List</h1>
+        <ConfigList />
+      </div>
     );
   }
 };
