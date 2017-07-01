@@ -1,4 +1,5 @@
 import React from 'react';
+import ServiceStatusIndicator from './service-status-indicator';
 
 export default class ConfigListItem extends React.PureComponent {
   render() {
@@ -7,7 +8,7 @@ export default class ConfigListItem extends React.PureComponent {
         <h3>{this.props.config.service}</h3>
         <div>{this.props.config.url}</div>
         <div>{this.props.config.port}</div>
-        <div>green</div>
+        <ServiceStatusIndicator status={this.props.status} />
       </li>
     );
   }

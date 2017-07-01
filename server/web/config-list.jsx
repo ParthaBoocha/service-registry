@@ -31,7 +31,7 @@ export default class ConfigList extends React.PureComponent {
 
   getItems() {
     return this.state.configs.map(config => {
-      return <ConfigListItem config={config} key={config.service} />;
+      return <ConfigListItem config={config} key={config.service} status='green' />;
     });
   }
 
