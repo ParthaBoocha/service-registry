@@ -1,36 +1,45 @@
 import React from 'react';
 import ConfigService from './config-service';
+import ConfigListItem from './config-list-item';
 
 export default class ConfigList extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = { configs: [] };
+  }
+
+  staticEntries() {
+    return { configs: [{
+      service: 'Service 1',
+      url: 'localhost',
+      port: 5555
+    }, {
+      service: 'Service 2',
+      url: 'somehost',
+      port: 6666
+    }, {
+      service: 'Service 3',
+      url: 'someotherhost',
+      port: 7777
+    }] };
+  }
+
+  async componentDidMount() {
+    let configs = await ConfigService.getAllConfigs();
+    this.setState({ configs: configs });
+  }
+
+  getItems() {
+    return this.state.configs.map(config => {
+      return <ConfigListItem config={config} key={config.service} />;
+    });
+  }
+
   render() {
     return (
       <ul>
-        <li>
-          <h3>Service 1</h3>
-          <div>localhost</div>
-          <div>5555</div>
-          <div>green</div>
-        </li>
-        <li>
-          <h3>Service 2</h3>
-          <div>somehost</div>
-          <div>6666</div>
-          <div>yellow</div>
-        </li>
-        <li>
-          <h3>Service 3</h3>
-          <div>someotherhost</div>
-          <div>7777</div>
-          <div>red</div>
-        </li>
+        {this.getItems()}
       </ul>
-    );
-  }
-
-  async getConfigListItems() {
-    const configs = await ConfigService.getAllConfigs();
-    return (
-      configs.map(config => <li key={config.service}>`${config.service} - ${config.host} - ${config.port}`</li>)
     );
   }
 }
