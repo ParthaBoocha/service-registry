@@ -37,9 +37,9 @@ export default class ConfigList extends React.PureComponent {
 
   render() {
     return (
-      <ul>
+      <div>
         {this.getItems()}
-      </ul>
+      </div>
     );
   }
 }

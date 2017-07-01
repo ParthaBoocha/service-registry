@@ -49,8 +49,10 @@
     "@types/joi": "^10.0.0",
     "@types/lodash": "^4.14.52",
     "@types/winston": "^2.2.0",
+    "css-loader": "^0.28.4",
     "eslint": "^4.0.0",
     "eslint-config-evolent": "^1.1.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "style-loader": "^0.18.2"
   }
 }

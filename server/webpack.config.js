@@ -4,7 +4,7 @@ let path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: ['babel-polyfill', './web/app.jsx'],
+  entry: ['babel-polyfill', './web/app.jsx', './web/styles/main.css'],
   resolve: { extensions: ['.js', '.jsx'] },
   output: {
     path: path.join(__dirname, './web/build'),
@@ -15,6 +15,8 @@ module.exports = {
     exclude: /node_modules/,
     loader: 'babel-loader',
     query: { presets: ['stage-0', 'es2015-node6', 'react'] }
+  }, {
+    test: /\.css$/, loader: 'style-loader!css-loader'
   }] },
   //   }, {
   //     test: /\.scss$/,
