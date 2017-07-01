@@ -2,8 +2,7 @@ const fs = require('fs');
 
 let registrations = [
   { plugin: './api/routes/services' },
-  { plugin: './plugins/async-route' },
-  { plugin: 'hapi-etags' }];
+  { plugin: './plugins/async-route' }];
 
 if (process.env.NODE_ENV !== 'production') {
   registrations.push({ plugin: {

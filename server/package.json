@@ -4,10 +4,7 @@
   "main": "server.js",
   "scripts": {
     "eslint": "eslint ./ --fix",
-    "flow": "flow",
-    "cover": "istanbul cover jasmine",
     "test": "jasmine",
-    "testci": "node jasmine-teamcity && flow",
     "start": "pm2 flush && pm2 startOrRestart pm2.config.js --update-env && pm2 logs",
     "server": "nodemon server.js"
   },
@@ -23,18 +20,13 @@
     "good": "^7.1.0",
     "good-console": "6.2.0",
     "hapi": "^16.1.0",
-    "hapi-etags": "^0.1.0",
     "hapi-swagger": "^7.5.0",
     "inert": "^4.1.0",
-    "istanbul": "^1.0.0-alpha.2",
     "jasmine": "^2.4.1",
-    "jasmine-reporters": "^2.2.0",
     "joi": "^10.1.0",
     "joi-date-extensions": "^1.0.1",
-    "mockery": "^2.0.0",
     "moment": "^2.17.1",
-    "winston": "^2.3.0",
-    "winston-daily-rotate-file": "^1.4.3"
+    "winston": "^2.3.0"
   },
   "devDependencies": {
     "@types/joi": "^10.0.0",
