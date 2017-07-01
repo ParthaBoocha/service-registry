@@ -1,3 +1,0 @@
-instrumentation:
-    root: 'api'
-    excludes: ['**/__tests__/**']
