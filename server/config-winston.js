@@ -1,8 +1,4 @@
 // set up winston
-require('winston-daily-rotate-file');
-
-'use strict';
-
 var winston = require('winston');
 var logger = new winston.Logger();
 
@@ -12,16 +8,6 @@ let commonOptions = {
   handleExceptions: true,
   humanReadableUnhandledException: true
 };
-
-// Override the built-in console methods with winston hooks
-if (process.env.NODE_ENV === 'production') {
-  logger.add(winston.transports.DailyRotateFile, {
-    ...commonOptions,
-    filename: `${process.env.LOG_FOLDER}/${process.env.APP_NAME}.info.log`,
-    level: 'info',
-    prepend: true
-  });
-}
 
 logger.add(winston.transports.Console, {
   ...commonOptions,
