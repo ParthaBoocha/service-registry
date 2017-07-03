@@ -29,6 +29,7 @@
     "winston": "^2.3.0"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.5.53",
     "@types/joi": "^10.0.0",
     "@types/lodash": "^4.14.52",
     "@types/winston": "^2.2.0",
