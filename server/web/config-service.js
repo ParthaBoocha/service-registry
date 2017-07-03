@@ -5,4 +5,15 @@ async function getAllConfigs() {
   return data.data;
 }
 
-export default { getAllConfigs };
+async function addOrUpdateConfig(service, url, port) {
+  Axios.put('/config', {
+    service: service,
+    url: url,
+    port: port
+  });
+}
+
+export default {
+  getAllConfigs,
+  addOrUpdateConfig
+};

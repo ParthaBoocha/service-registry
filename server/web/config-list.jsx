@@ -1,11 +1,18 @@
 import React from 'react';
 import ConfigService from './config-service';
-import ConfigListItem from './config-list-item';
+import ViewConfigItem from './view-config-item';
+import EditConfigItem from './edit-config-item';
 
 export default class ConfigList extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { configs: [] };
+    this.state = {
+      configs: [],
+      currentEditKey: undefined
+    };
+    this.editItem = this.editItem.bind(this);
+    this.submitItem = this.submitItem.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
   }
 
   staticEntries() {
@@ -24,15 +31,47 @@ export default class ConfigList extends React.PureComponent {
     }] };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
+    this.fetchConfigs();
+  }
+
+  async fetchConfigs() {
     let configs = await ConfigService.getAllConfigs();
     this.setState({ configs: configs });
   }
 
   getItems() {
     return this.state.configs.map(config => {
-      return <ConfigListItem config={config} key={config.service} status='green' />;
+      if (config.service === this.state.currentEditKey) {
+        return <EditConfigItem
+          config={config}
+          key={config.service}
+          status='green'
+          onSubmit={this.submitItem}
+          onCancel={this.cancelEdit}
+        />;
+      }
+      return <ViewConfigItem
+        config={config}
+        key={config.service}
+        status='green'
+        onEdit={this.editItem}
+      />;
     });
+  }
+
+  editItem(key) {
+    this.setState({ currentEditKey: key });
+  }
+
+  cancelEdit() {
+    this.setState({ currentEditKey: undefined });
+  }
+
+  async submitItem(service, url, port) {
+    await ConfigService.addOrUpdateConfig(service, url, port);
+    this.fetchConfigs();
+    this.setState({ currentEditKey: undefined });
   }
 
   render() {
