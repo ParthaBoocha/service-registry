@@ -4,8 +4,7 @@ let registrations = [
   { plugin: 'inert' },
   { plugin: './api/routes/services' },
   { plugin: './web/routes/web' },
-  { plugin: './plugins/async-route' },
-  { plugin: 'hapi-etags' }];
+  { plugin: './plugins/async-route' }];
 
 if (process.env.NODE_ENV !== 'production') {
   registrations.push({ plugin: {
