@@ -9,13 +9,18 @@
     "server": "nodemon server.js"
   },
   "dependencies": {
+    "autoprefixer": "^7.1.1",
+    "axios": "^0.16.2",
     "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.1.0",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "babel-polyfill": "^6.7.4",
     "babel-preset-es2015-node6": "^0.4.0",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "boom": "^4.2.0",
+    "extract-text-webpack-plugin": "^2.1.2",
     "glue": "^4.1.0",
     "good": "^7.1.0",
     "good-console": "6.2.0",
@@ -26,6 +31,10 @@
     "joi": "^10.1.0",
     "joi-date-extensions": "^1.0.1",
     "moment": "^2.17.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-toolbox": "^2.0.0-beta.12",
+    "webpack": "^3.0.0",
     "winston": "^2.3.0"
   },
   "devDependencies": {
@@ -33,8 +42,10 @@
     "@types/joi": "^10.0.0",
     "@types/lodash": "^4.14.52",
     "@types/winston": "^2.2.0",
+    "css-loader": "^0.28.4",
     "eslint": "^4.0.0",
     "eslint-config-evolent": "^1.1.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "style-loader": "^0.18.2"
   }
 }

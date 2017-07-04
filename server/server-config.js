@@ -1,7 +1,9 @@
 const fs = require('fs');
 
 let registrations = [
+  { plugin: 'inert' },
   { plugin: './api/routes/services' },
+  { plugin: './web/routes/web' },
   { plugin: './plugins/async-route' }];
 
 if (process.env.NODE_ENV !== 'production') {
