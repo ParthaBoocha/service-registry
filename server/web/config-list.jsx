@@ -1,5 +1,4 @@
 import React from 'react';
-import ConfigService from './config-service';
 import ViewConfigItem from './view-config-item';
 import EditConfigItem from './edit-config-item';
 
@@ -42,8 +41,7 @@ export default class ConfigList extends React.PureComponent {
 
   async submitItem(service, url, port) {
     this.setState({ currentEditKey: undefined });
-    await ConfigService.addOrUpdateConfig(service, url, port);
-    this.props.refreshItems();
+    this.props.addOrUpdate(service, url, port);
   }
 
   render() {
