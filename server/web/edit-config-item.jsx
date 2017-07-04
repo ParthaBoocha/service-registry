@@ -12,8 +12,8 @@ export default class EditConfigItem extends React.PureComponent {
       status: props.status
     };
     this.inputChanged = this.inputChanged.bind(this);
-    this.cancelEdit = this.cancelEdit.bind(this);
-    this.submitItem = this.submitItem.bind(this);
+    this.cancel = this.cancel.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   render() {
@@ -34,20 +34,20 @@ export default class EditConfigItem extends React.PureComponent {
               <input type='number' name='port' defaultValue={this.state.port} onChange={this.inputChanged} />
             </p>
             <ServiceStatusIndicator status={this.state.status} />
-            <p><button type='submit' onClick={this.submitItem}>Submit</button></p>
-            <p><button type='button' onClick={this.cancelEdit}>Cancel</button></p>
+            <p><button type='submit' onClick={this.submit}>Submit</button></p>
+            <p><button type='button' onClick={this.cancel}>Cancel</button></p>
           </div>
         </div>
       </form>
     );
   }
 
-  submitItem(e) {
+  submit(e) {
     e.preventDefault();
     this.props.onSubmit(this.state.service, this.state.url, this.state.port);
   }
 
-  cancelEdit() {
+  cancel() {
     this.props.onCancel();
   }
 
