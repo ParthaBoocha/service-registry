@@ -21,9 +21,18 @@ export default class EditConfigItem extends React.PureComponent {
       <form id='editConfigForm'>
         <div className={'card'}>
           <div className={'content'}>
-            <input type='text' name='service' defaultValue={this.state.service} onChange={this.inputChanged} />
-            <input type='text' name='url' defaultValue={this.state.url} onChange={this.inputChanged} />
-            <input type='number' name='port' defaultValue={this.state.port} onChange={this.inputChanged} />
+            <p>
+              <label>Service:</label>
+              <input type='text' name='service' defaultValue={this.state.service} onChange={this.inputChanged} />
+            </p>
+            <p>
+              <label>URL:</label>
+              <input type='text' name='url' defaultValue={this.state.url} onChange={this.inputChanged} />
+            </p>
+            <p>
+              <label>Port:</label>
+              <input type='number' name='port' defaultValue={this.state.port} onChange={this.inputChanged} />
+            </p>
             <ServiceStatusIndicator status={this.state.status} />
             <p><button type='submit' onClick={this.submitItem}>Submit</button></p>
             <p><button type='button' onClick={this.cancelEdit}>Cancel</button></p>
