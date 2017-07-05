@@ -5,8 +5,8 @@ import styles from './styles/main.css';
 export default class ViewConfigItem extends React.PureComponent {
   render() {
     return (
-      <div className={'card'}>
-        <div className={'content'}>
+      <div className={styles.card}>
+        <div className={styles.content}>
           <h3>{this.props.config.service}</h3>
           <p>{this.props.config.url}</p>
           <p>{this.props.config.port}</p>

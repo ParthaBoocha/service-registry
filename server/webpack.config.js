@@ -4,33 +4,29 @@ let path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: ['babel-polyfill', './web/app.jsx', './web/styles/main.css'],
+  entry: ['babel-polyfill', './web/app.jsx'],
   resolve: { extensions: ['.js', '.jsx'] },
   output: {
     path: path.join(__dirname, './web/build'),
     filename: 'client.bundle.js'
   },
-  module: { loaders: [{
+  module: { rules: [{
     test: /\.(jsx|js)$/,
     exclude: /node_modules/,
-    loader: 'babel-loader',
-    query: { presets: ['stage-0', 'es2015-node6', 'react'] }
+    use: [{
+      loader: 'babel-loader',
+      options: { presets: ['stage-0', 'es2015-node6', 'react'] }
+    }]
   }, {
-    test: /\.css$/, loader: 'style-loader!css-loader'
+    test: /\.css$/,
+    use: ['style-loader', {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        camelCase: true
+      }
+    }]
   }] },
-  //   }, {
-  //     test: /\.scss$/,
-  //     use: ExtractTextPlugin.extract({
-  //       fallback: 'style-loader',
-  //       // resolve-url-loader may be chained before sass-loader if necessary
-  //       use: ['css-loader', 'sass-loader']
-  //     })
-  //   }] },
-  //   sassLoader: { data: '@import "' + path.resolve(__dirname, 'web/style/_theme.scss') + '";' },
-  //   postcss: [
-  //     require('autoprefixer')
-  //   ],
-  //   plugins: plugins,
   devtool: 'source-map',
   watch: true
 };
