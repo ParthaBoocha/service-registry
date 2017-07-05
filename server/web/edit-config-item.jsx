@@ -19,8 +19,8 @@ export default class EditConfigItem extends React.PureComponent {
   render() {
     return (
       <form id='editConfigForm'>
-        <div className={'card'}>
-          <div className={'content'}>
+        <div className={styles.card}>
+          <div className={styles.content}>
             <p>
               <label>Service:</label>
               <input type='text' name='service' defaultValue={this.state.service} onChange={this.inputChanged} />

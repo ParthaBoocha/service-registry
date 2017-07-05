@@ -1,5 +1,6 @@
 import React from 'react';
 import EditConfigItem from './edit-config-item';
+import styles from './styles/main.css';
 
 export default class AddConfigItem extends React.PureComponent {
   constructor(props) {
@@ -13,9 +14,9 @@ export default class AddConfigItem extends React.PureComponent {
     var config = {};
 
     return (
-      <div id='myModal' className='modal'>
-        <div className='modal-content'>
-          <span className='close' onClick={this.cancel}>&times;</span>
+      <div id='myModal' className={styles.modal}>
+        <div className={styles.modalContent}>
+          <span className={styles.close} onClick={this.cancel}>&times;</span>
           <EditConfigItem
             config={config}
             key={config.service}
