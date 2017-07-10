@@ -5,7 +5,7 @@ namespace service_registry
 {
     internal class LocalFileCache : ILocalCache
     {
-        public async Task Save(Configuration config)
+        public async Task Save(Configuration[] config)
         {
             //do something
         }

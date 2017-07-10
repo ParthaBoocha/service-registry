@@ -20,24 +20,22 @@ namespace service_registry
 
         public async Task<Configuration> GetConfiguration(string serviceRegistryUrl, string service)
         {
-            var response = await _httpClient.GetStringAsync(serviceRegistryUrl + "/config/" + service);
-            if(!string.IsNullOrEmpty(response)) {
-                var config = JsonConvert.DeserializeObject<Configuration>(response);
-                if(!string.IsNullOrEmpty(config.Service))
-                {
-                    await _localCache.Save(config);
-                }
-                return config;
-            }
+            var configs = await GetAll(serviceRegistryUrl);
+            var config = configs.FirstOrDefault(c => string.Compare(c.Service, service, true) == 0);
 
-            return new Configuration();
+            return config ?? new Configuration();
         }
 
         public async Task<List<Configuration>> GetAll(string serviceRegistryUrl)
         {
             var response = await _httpClient.GetStringAsync(serviceRegistryUrl + "/configs");
             if(!string.IsNullOrEmpty(response)) {
-                return JsonConvert.DeserializeObject<Configuration[]>(response).ToList();
+                var configs = JsonConvert.DeserializeObject<Configuration[]>(response).ToList();
+                if(configs.Count > 0)
+                {
+                    await _localCache.Save(configs.ToArray());
+                    return configs;
+                }
             }
 
             return new List<Configuration>();

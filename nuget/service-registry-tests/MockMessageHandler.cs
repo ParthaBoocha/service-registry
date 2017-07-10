@@ -11,7 +11,7 @@ namespace service_registry_tests
         private HttpStatusCode _statusCode;
         private string _response;
 
-        public MockMessageHandler(string response = "{}", HttpStatusCode statusCode = HttpStatusCode.OK)
+        public MockMessageHandler(string response = "[]", HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             _response = response;
             _statusCode = statusCode;
