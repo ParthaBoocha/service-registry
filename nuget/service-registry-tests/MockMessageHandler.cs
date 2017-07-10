@@ -4,13 +4,24 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-internal class MockMessageHandler : HttpMessageHandler
+namespace service_registry_tests
+{
+    internal class MockMessageHandler : HttpMessageHandler
     {
+        private HttpStatusCode _statusCode;
+        private string _response;
+
+        public MockMessageHandler(string response = "{}", HttpStatusCode statusCode = HttpStatusCode.OK)
+        {
+            _response = response;
+            _statusCode = statusCode;
+        }
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+            return Task.FromResult(new HttpResponseMessage(_statusCode)
             {
-                Content = new StringContent("{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}")
+                Content = new StringContent(_response)
             });
         }
     }
+}
