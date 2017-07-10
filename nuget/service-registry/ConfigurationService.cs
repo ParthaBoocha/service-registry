@@ -10,21 +10,24 @@ namespace service_registry
     public class ConfigurationService : IConfigurationService
     {
         private readonly HttpClient _httpClient;
+        private readonly ILocalCache _localCache;
 
-        public ConfigurationService(HttpMessageHandler httpMessageHandler)
+        public ConfigurationService(HttpMessageHandler httpMessageHandler = null, ILocalCache localCache = null)
         {
-            _httpClient = new HttpClient(httpMessageHandler);
-        }
-        public ConfigurationService()
-        {
-            _httpClient = new HttpClient();
+            _httpClient = httpMessageHandler != null ? new HttpClient(httpMessageHandler) : new HttpClient();
+            _localCache = localCache ?? new LocalFileCache() ;
         }
 
         public async Task<Configuration> GetConfiguration(string serviceRegistryUrl, string service)
         {
             var response = await _httpClient.GetStringAsync(serviceRegistryUrl + "/config/" + service);
             if(!string.IsNullOrEmpty(response)) {
-                return JsonConvert.DeserializeObject<Configuration>(response);
+                var config = JsonConvert.DeserializeObject<Configuration>(response);
+                if(!string.IsNullOrEmpty(config.Service))
+                {
+                    await _localCache.Save(config);
+                }
+                return config;
             }
 
             return new Configuration();
