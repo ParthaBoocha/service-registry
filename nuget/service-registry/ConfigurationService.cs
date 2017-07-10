@@ -7,23 +7,25 @@ namespace service_registry
 {
     public class ConfigurationService : IConfigurationService
     {
-        private readonly string _serviceRegistryUrl;
-        public ConfigurationService(string serviceRegistryUrl)
+        private readonly HttpClient _httpClient;
+
+        public ConfigurationService(HttpMessageHandler httpMessageHandler)
         {
-            _serviceRegistryUrl = serviceRegistryUrl;
+            _httpClient = new HttpClient(httpMessageHandler);
+        }
+        public ConfigurationService()
+        {
+            _httpClient = new HttpClient();
         }
 
-        public async Task<Configuration> GetConfiguration(string service)
+        public async Task<Configuration> GetConfiguration(string serviceRegistryUrl, string service)
         {
-            using(var httpClient = new HttpClient())
-            {
-                var response = await httpClient.GetStringAsync(_serviceRegistryUrl + "/" + service);
-                if(!string.IsNullOrEmpty(response)) {
-                    return JsonConvert.DeserializeObject<Configuration>(response);
-                }
-
-                return new Configuration();
+            var response = await _httpClient.GetStringAsync(serviceRegistryUrl + "/" + service);
+            if(!string.IsNullOrEmpty(response)) {
+                return JsonConvert.DeserializeObject<Configuration>(response);
             }
+
+            return new Configuration();
         }
     }
 }

@@ -4,6 +4,6 @@ namespace service_registry
 {
     public interface IConfigurationService
     {
-        Task<Configuration> GetConfiguration(string service);
+        Task<Configuration> GetConfiguration(string serviceRegistryUrl, string service);
     }
 }
