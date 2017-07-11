@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -11,6 +12,11 @@ namespace service_registry
         private static readonly string FolderPath = Path.Combine(Environment.GetEnvironmentVariable(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "LocalAppData" : "Home"), "service-registry");
 
         private static readonly string FilePath = Path.Combine(FolderPath, "configs.json");
+
+        public async Task<List<Configuration>> Read()
+        {
+            return new List<Configuration>();
+        }
 
         public async Task Save(Configuration[] configs)
         {

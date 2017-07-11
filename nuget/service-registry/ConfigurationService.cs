@@ -31,7 +31,12 @@ namespace service_registry
 
         public async Task<List<Configuration>> GetAll(string serviceRegistryUrl)
         {
-            var response = await _httpClient.GetStringAsync(serviceRegistryUrl + "/configs");
+            var response = string.Empty;
+            try
+            {
+                response = await _httpClient.GetStringAsync(serviceRegistryUrl + "/configs");
+            }
+            catch {}
             if(!string.IsNullOrEmpty(response)) {
                 var configs = JsonConvert.DeserializeObject<Configuration[]>(response).ToList();
                 if(configs.Count > 0)
@@ -43,6 +48,10 @@ namespace service_registry
                     catch {}
                     return configs;
                 }
+            }
+            else
+            {
+                return await _localCache.Read();
             }
 
             return new List<Configuration>();
