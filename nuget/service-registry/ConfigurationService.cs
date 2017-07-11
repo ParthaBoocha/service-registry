@@ -48,11 +48,15 @@ namespace service_registry
             }
             else
             {
-                var content = await _localCache.Read();
-                if(!string.IsNullOrEmpty(content))
+                try
                 {
-                    configs = Deserialize(content);
+                    var content = await _localCache.Read();
+                    if(!string.IsNullOrEmpty(content))
+                    {
+                        configs = Deserialize(content);
+                    }
                 }
+                catch {}
             }
 
             return configs;
