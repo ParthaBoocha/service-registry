@@ -1,6 +1,6 @@
 import React from 'react';
 import EditConfigItem from './edit-config-item';
-import styles from './styles/main.css';
+import Dialog from 'react-toolbox/lib/dialog';
 
 export default class AddConfigItem extends React.PureComponent {
   constructor(props) {
@@ -10,22 +10,34 @@ export default class AddConfigItem extends React.PureComponent {
     this.cancel = this.cancel.bind(this);
   }
 
+  actions = [
+    {
+      label: 'Save', onClick: this.submit
+    },
+    {
+      label: 'Cancel', onClick: this.cancel
+    }
+  ];
+
   render() {
     var config = {};
 
     return (
-      <div id='myModal' className={styles.modal}>
-        <div className={styles.modalContent}>
-          <span className={styles.close} onClick={this.cancel}>&times;</span>
-          <EditConfigItem
-            config={config}
-            key={config.service}
-            status='green'
-            onSubmit={this.submit}
-            onCancel={this.cancel}
-          />
-        </div>
-      </div>
+      <Dialog
+        active
+        actions={this.actions}
+        onEscKeyDown={this.cancel}
+        onOverlayClick={this.cancel}
+        title='Add New Config'
+      >
+        <EditConfigItem
+          config={config}
+          key={config.service}
+          status='green'
+          onSubmit={this.submit}
+          onCancel={this.cancel}
+        />
+      </Dialog>
     );
   }
 

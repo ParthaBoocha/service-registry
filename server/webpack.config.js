@@ -25,7 +25,8 @@ module.exports = {
         modules: true,
         camelCase: true
       }
-    }]
+    },
+    'sass-loader']
   }] },
   devtool: 'source-map',
   watch: true

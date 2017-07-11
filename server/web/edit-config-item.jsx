@@ -1,6 +1,8 @@
 import React from 'react';
 import ServiceStatusIndicator from './service-status-indicator';
-import styles from './styles/main.css';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import Input from 'react-toolbox/lib/input';
+import { Button } from 'react-toolbox/lib/button';
 
 export default class EditConfigItem extends React.PureComponent {
   constructor(props) {
@@ -18,27 +20,26 @@ export default class EditConfigItem extends React.PureComponent {
 
   render() {
     return (
-      <form id='editConfigForm'>
-        <div className={styles.card}>
-          <div className={styles.content}>
-            <p>
-              <label>Service:</label>
-              <input type='text' name='service' defaultValue={this.state.service} onChange={this.inputChanged} />
-            </p>
-            <p>
-              <label>URL:</label>
-              <input type='text' name='url' defaultValue={this.state.url} onChange={this.inputChanged} />
-            </p>
-            <p>
-              <label>Port:</label>
-              <input type='number' name='port' defaultValue={this.state.port} onChange={this.inputChanged} />
-            </p>
-            <ServiceStatusIndicator status={this.state.status} />
-            <p><button type='submit' onClick={this.submit}>Submit</button></p>
-            <p><button type='button' onClick={this.cancel}>Cancel</button></p>
-          </div>
-        </div>
-      </form>
+      <Card style={{
+        width: '350px',
+        float: 'left',
+        margin: 10
+      }}>
+        <CardTitle
+          avatar='https://placeimg.com/80/80/animals'
+          title={this.state.service}
+        />
+        <CardText>
+          <Input type='text' label='Service' name='service' value={this.state.service} onChange={this.inputChanged} maxLength={20} />
+          <Input type='text' label='URL' name='url' value={this.state.url} onChange={this.inputChanged} maxLength={50} />
+          <Input type='number' label='Port' name='port' value={this.state.port} onChange={this.inputChanged} maxLength={6} />
+          <ServiceStatusIndicator status={this.props.status} />
+        </CardText>
+        <CardActions>
+          <Button label='Submit' icon='save' onClick={this.submit} flat primary />
+          <Button label='Cancel' icon='cancel' onClick={this.cancel} flat primary />
+        </CardActions>
+      </Card>
     );
   }
 

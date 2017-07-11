@@ -2,6 +2,7 @@ import React from 'react';
 import ConfigService from './config-service';
 import ConfigList from './config-list';
 import AddConfigItem from './add-config-item';
+import { Button } from 'react-toolbox/lib/button';
 
 export default class ServiceRegistry extends React.PureComponent {
   constructor(props) {
@@ -23,8 +24,7 @@ export default class ServiceRegistry extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1>Service Registry</h1>
-        <button type='button' onClick={this.addNew}>Add New</button>
+        <Button icon='add' onClick={this.addNew} label='Add New' raised />
         <ConfigList
           items={this.state.configs}
           refreshItems={this.fetchConfigs}
