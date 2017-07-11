@@ -37,28 +37,43 @@ namespace service_registry
                 response = await _httpClient.GetStringAsync(serviceRegistryUrl + "/configs");
             }
             catch {}
-            if(!string.IsNullOrEmpty(response)) {
-                var configs = JsonConvert.DeserializeObject<Configuration[]>(response).ToList();
-                if(configs.Count > 0)
+            var configs = Deserialize(response);
+            if(configs.Count > 0)
+            {
+                try
                 {
-                    try
-                    {
-                        await _localCache.Save(JsonConvert.SerializeObject(configs));
-                    }
-                    catch {}
-                    return configs;
+                    await _localCache.Save(Serialize(configs));
                 }
+                catch {}
             }
             else
             {
                 var content = await _localCache.Read();
                 if(!string.IsNullOrEmpty(content))
                 {
-                    return JsonConvert.DeserializeObject<Configuration[]>(content).ToList();
+                    configs = Deserialize(content);
                 }
             }
 
+            return configs;
+        }
+
+        private List<Configuration> Deserialize(string content)
+        {
+            if(!string.IsNullOrEmpty(content)) {
+                var configs = JsonConvert.DeserializeObject<Configuration[]>(content).ToList();
+                return configs;
+            }
             return new List<Configuration>();
+        }
+
+        private string Serialize(List<Configuration> configs)
+        {
+            if(configs.Count > 0)
+            {
+                return JsonConvert.SerializeObject(configs.ToArray());
+            }
+            return string.Empty;
         }
     }
 }
