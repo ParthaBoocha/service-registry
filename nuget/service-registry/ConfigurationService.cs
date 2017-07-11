@@ -36,7 +36,11 @@ namespace service_registry
                 var configs = JsonConvert.DeserializeObject<Configuration[]>(response).ToList();
                 if(configs.Count > 0)
                 {
-                    await _localCache.Save(configs.ToArray());
+                    try
+                    {
+                        await _localCache.Save(configs.ToArray());
+                    }
+                    catch {}
                     return configs;
                 }
             }
