@@ -17,7 +17,7 @@ namespace service_registry_tests
         Because of = () => _emptyConfig = Subject.GetConfiguration(@"http://url", "service that doesn't exist").Await();
 
         It should_return_an_empty_config = () => _emptyConfig.Service.ShouldBeNull();
-        It should_not_save_to_local_cache = () => _cache.DidNotReceive().Save(Arg.Any<Configuration[]>());
+        It should_not_save_to_local_cache = () => _cache.DidNotReceive().Save(Arg.Any<string>());
 
         private static ConfigurationService Subject;
         private static Configuration _emptyConfig;

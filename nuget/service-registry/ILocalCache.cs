@@ -5,7 +5,7 @@ namespace service_registry
 {
     public interface ILocalCache
     {
-        Task Save(Configuration[] configs);
-        Task<List<Configuration>> Read();
+        Task<string> Read();
+        Task Save(string configs);
     }
 }

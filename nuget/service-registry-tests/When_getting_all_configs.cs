@@ -21,7 +21,7 @@ namespace service_registry_tests
         Because of = () => _configs = Subject.GetAll(@"http://url").Await();
 
         It should_return_an_empty_config = () => _configs.Count.ShouldEqual(2);
-        It should_save_to_local_cache = () => _cache.Received().Save(Arg.Any<Configuration[]>());
+        It should_save_to_local_cache = () => _cache.Received().Save(Arg.Any<string>());
 
         private static ConfigurationService Subject;
         private static List<Configuration> _configs;

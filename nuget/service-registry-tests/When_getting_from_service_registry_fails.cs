@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using Machine.Specifications;
 using NSubstitute;
 using service_registry;
@@ -12,8 +13,7 @@ namespace service_registry_tests
     {
         Establish establish = () => {
             _cache = Substitute.For<ILocalCache>();
-            _cache.Read().Returns(x => { return new List<Configuration>() {
-                    new Configuration() { Service = "xyz", Url = "xyzhost", Port = "1234" } }; });
+            _cache.Read().Returns(x => { return Task.FromResult("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]"); });
             Subject = new ConfigurationService(new MockMessageHandler("", HttpStatusCode.InternalServerError), _cache);
         };
 
@@ -25,7 +25,7 @@ namespace service_registry_tests
             _config.Url.ShouldEqual("xyzhost");
             _config.Port.ShouldEqual("1234");
         };
-        It should_not_save_local_cache = () => _cache.DidNotReceive().Save(Arg.Any<Configuration[]>());
+        It should_not_save_local_cache = () => _cache.DidNotReceive().Save(Arg.Any<string>());
 
         private static ILocalCache _cache;
         private static ConfigurationService Subject;

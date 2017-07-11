@@ -10,7 +10,7 @@ namespace service_registry_tests
     {
         Establish establish = () => {
             _cache = Substitute.For<ILocalCache>();
-            _cache.Save(Arg.Any<Configuration[]>()).Returns(x => { throw new Exception("some error"); });
+            _cache.Save(Arg.Any<string>()).Returns(x => { throw new Exception("some error"); });
             Subject = new ConfigurationService(new MockMessageHandler("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]"), _cache);
         };
 
@@ -21,7 +21,7 @@ namespace service_registry_tests
             _config.Url.ShouldEqual("xyzhost");
             _config.Port.ShouldEqual("1234");
         };
-        It should_have_attempted_to_save = () => _cache.Received().Save(Arg.Any<Configuration[]>());
+        It should_have_attempted_to_save = () => _cache.Received().Save(Arg.Any<string>());
 
         private static ILocalCache _cache;
         private static ConfigurationService Subject;

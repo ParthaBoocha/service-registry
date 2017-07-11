@@ -43,7 +43,7 @@ namespace service_registry
                 {
                     try
                     {
-                        await _localCache.Save(configs.ToArray());
+                        await _localCache.Save(JsonConvert.SerializeObject(configs));
                     }
                     catch {}
                     return configs;
@@ -51,7 +51,11 @@ namespace service_registry
             }
             else
             {
-                return await _localCache.Read();
+                var content = await _localCache.Read();
+                if(!string.IsNullOrEmpty(content))
+                {
+                    return JsonConvert.DeserializeObject<Configuration[]>(content).ToList();
+                }
             }
 
             return new List<Configuration>();

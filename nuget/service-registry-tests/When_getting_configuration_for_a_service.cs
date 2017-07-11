@@ -23,7 +23,7 @@ namespace service_registry_tests
         It should_get_service_name = () => _config.Service.ShouldEqual("xyz");
         It should_get_service_url = () => _config.Url.ShouldEqual("xyzhost");
         It should_get_service_port = () => _config.Port.ShouldEqual("1234");
-        It should_save_to_local_cache = () => _cache.Received().Save(Arg.Any<Configuration[]>());
+        It should_save_to_local_cache = () => _cache.Received().Save(Arg.Any<string>());
 
         private static Configuration _config;
         private static ILocalCache _cache;

@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace service_registry
 {
@@ -13,12 +11,12 @@ namespace service_registry
 
         private static readonly string FilePath = Path.Combine(FolderPath, "configs.json");
 
-        public async Task<List<Configuration>> Read()
+        public async Task<string> Read()
         {
-            return new List<Configuration>();
+            return "";
         }
 
-        public async Task Save(Configuration[] configs)
+        public async Task Save(string configs)
         {
             if(!Directory.Exists(FolderPath))
             {
@@ -26,7 +24,7 @@ namespace service_registry
             }
             using(var writer = File.CreateText(FilePath))
             {
-                await writer.WriteAsync(JsonConvert.SerializeObject(configs));
+                await writer.WriteAsync(configs);
             }
         }
     }

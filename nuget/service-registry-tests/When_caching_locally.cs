@@ -7,9 +7,7 @@ namespace service_registry_tests
     [Subject(typeof(LocalFileCache))]
     public class When_caching_locally
     {
-        Because of = () => Subject.Save(new Configuration[] {
-            new Configuration { Service = "blah", Url = "url", Port = "1234" }
-        }).Await();
+        Because of = () => Subject.Save("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]").Await();
 
         It should_write_settings_to_the_file = () => true.ShouldBeTrue();
 
