@@ -36,8 +36,8 @@ export default class EditConfigItem extends React.PureComponent {
           <ServiceStatusIndicator status={this.props.status} />
         </CardText>
         <CardActions>
-          <Button label='Submit' icon='save' onClick={this.submit} flat primary />
-          <Button label='Cancel' icon='cancel' onClick={this.cancel} flat primary />
+          <Button label='Submit' icon='save' onClick={this.submit} flat />
+          <Button label='Cancel' icon='cancel' onClick={this.cancel} flat />
         </CardActions>
       </Card>
     );

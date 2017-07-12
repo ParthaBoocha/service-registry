@@ -3,6 +3,7 @@ import ConfigService from './config-service';
 import ConfigList from './config-list';
 import AddConfigItem from './add-config-item';
 import { Button } from 'react-toolbox/lib/button';
+import styles from './styles/main.css';
 
 export default class ServiceRegistry extends React.PureComponent {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class ServiceRegistry extends React.PureComponent {
   render() {
     return (
       <div>
-        <Button icon='add' onClick={this.addNew} label='Add New' raised />
+        <Button className={styles.addButton} icon='add' onClick={this.addNew} accent floating />
         <ConfigList
           items={this.state.configs}
           refreshItems={this.fetchConfigs}

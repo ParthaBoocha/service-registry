@@ -1,3 +1,10 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+.add-button {
+  position: fixed;
+  right: calc(var(--button-floating-height) / 2);
+  top: calc(var(--appbar-height) - (var(--button-floating-height) / 2));
+  z-index: var(--z-index-highest);
+}
