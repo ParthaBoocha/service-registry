@@ -13,7 +13,12 @@ namespace service_registry
 
         public async Task<string> Read()
         {
-            return "";
+            if(!File.Exists(FilePath))
+            {
+                return string.Empty;
+            }
+
+            return File.ReadAllText(FilePath);
         }
 
         public async Task Save(string configs)
