@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <AppBar title='Service Registry' />
+        <AppBar title='Service Registry' fixed />
         <ServiceRegistry />
       </div>
     );

@@ -5,7 +5,7 @@ let path = require('path');
 module.exports = {
   context: __dirname,
   entry: ['babel-polyfill', './web/app.jsx'],
-  resolve: { extensions: ['.js', '.jsx'] },
+  resolve: { extensions: ['.js', '.jsx', '.css'] },
   output: {
     path: path.join(__dirname, './web/build'),
     filename: 'client.bundle.js'

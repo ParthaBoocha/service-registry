@@ -3,7 +3,7 @@ import ConfigService from './config-service';
 import ConfigList from './config-list';
 import AddConfigItem from './add-config-item';
 import { Button } from 'react-toolbox/lib/button';
-import styles from './styles/main.css';
+import styles from './styles/main';
 
 export default class ServiceRegistry extends React.PureComponent {
   constructor(props) {

@@ -8,3 +8,7 @@ body {
   top: calc(var(--appbar-height) - (var(--button-floating-height) / 2));
   z-index: var(--z-index-highest);
 }
+
+.cards {
+  margin-top: calc(var(--appbar-height) + 20px);
+}

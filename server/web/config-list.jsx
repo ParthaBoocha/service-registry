@@ -1,6 +1,7 @@
 import React from 'react';
 import ViewConfigItem from './view-config-item';
 import EditConfigItem from './edit-config-item';
+import styles from './styles/main';
 
 export default class ConfigList extends React.PureComponent {
   constructor(props) {
@@ -46,7 +47,7 @@ export default class ConfigList extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <div className={styles.cards}>
         {this.getItems()}
       </div>
     );
