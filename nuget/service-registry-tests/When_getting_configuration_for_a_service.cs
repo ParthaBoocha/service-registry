@@ -12,7 +12,7 @@ namespace service_registry_tests
     [Subject(typeof(ConfigurationService))]
     public class when_getting_configuration_for_a_service
     {
-        Establish establish = () => {
+        Establish context = () => {
             _cache = Substitute.For<ILocalCache>();
             Subject = new ConfigurationService(new MockMessageHandler("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]"),
             _cache);

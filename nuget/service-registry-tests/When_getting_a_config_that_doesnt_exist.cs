@@ -8,7 +8,7 @@ namespace service_registry_tests
     [Subject(typeof(ConfigurationService))]
     public class When_getting_a_config_that_doesnt_exist
     {
-        Establish establish = () =>
+        Establish context = () =>
         {
             _cache = Substitute.For<ILocalCache>();
             Subject = new ConfigurationService(new MockMessageHandler(), _cache);

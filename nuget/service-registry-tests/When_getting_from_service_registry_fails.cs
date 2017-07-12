@@ -11,7 +11,7 @@ namespace service_registry_tests
     [Subject(typeof(ConfigurationService))]
     public class When_getting_from_service_registry_fails
     {
-        Establish establish = () => {
+        Establish context = () => {
             _cache = Substitute.For<ILocalCache>();
             _cache.Read().Returns(x => { return Task.FromResult("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]"); });
             Subject = new ConfigurationService(new MockMessageHandler("", HttpStatusCode.InternalServerError), _cache);

@@ -8,7 +8,7 @@ namespace service_registry_tests
     [Subject(typeof(ConfigurationService))]
     public class When_reading_from_local_cache_and_it_errors
     {
-        Establish establish = () =>
+        Establish context = () =>
         {
             _cache = Substitute.For<ILocalCache>();
             _cache.When(x => x.Read()).Do(x => { throw new Exception("some error"); });

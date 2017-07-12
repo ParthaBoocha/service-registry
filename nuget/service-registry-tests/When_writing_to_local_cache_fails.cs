@@ -8,7 +8,7 @@ namespace service_registry_tests
     [Subject(typeof(ConfigurationService))]
     public class When_writing_to_local_cache_fails
     {
-        Establish establish = () => {
+        Establish context = () => {
             _cache = Substitute.For<ILocalCache>();
             _cache.Save(Arg.Any<string>()).Returns(x => { throw new Exception("some error"); });
             Subject = new ConfigurationService(new MockMessageHandler("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]"), _cache);
