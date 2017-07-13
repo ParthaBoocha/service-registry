@@ -30,9 +30,9 @@ export default class EditConfigItem extends React.PureComponent {
           title={this.state.service}
         />
         <CardText>
-          <Input type='text' label='Service' name='service' value={this.state.service} onChange={this.inputChanged} maxLength={20} />
-          <Input type='text' label='URL' name='url' value={this.state.url} onChange={this.inputChanged} maxLength={50} />
-          <Input type='number' label='Port' name='port' value={this.state.port} onChange={this.inputChanged} maxLength={6} />
+          <Input type='text' label='Service' name='service' value={this.state.service} onChange={this.inputChanged.bind(this, 'service')} maxLength={20} />
+          <Input type='text' label='URL' name='url' value={this.state.url} onChange={this.inputChanged.bind(this, 'url')} maxLength={50} />
+          <Input type='number' label='Port' name='port' value={this.state.port} onChange={this.inputChanged.bind(this, 'port')} maxLength={6} />
           <ServiceStatusIndicator status={this.props.status} />
         </CardText>
         <CardActions>
@@ -52,9 +52,7 @@ export default class EditConfigItem extends React.PureComponent {
     this.props.onCancel();
   }
 
-  inputChanged(event) {
-    let name = event.target.name;
-    let value = event.target.value;
+  inputChanged(name, value) {
     this.setState({ [name]: value });
   }
 }
