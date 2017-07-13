@@ -9,6 +9,6 @@ body {
   z-index: var(--z-index-highest);
 }
 
-.cards {
+.main-content {
   margin-top: calc(var(--appbar-height) + 20px);
 }
