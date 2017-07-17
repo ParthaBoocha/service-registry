@@ -1,23 +1,22 @@
 import * as File from 'fs';
 
-const dataFile = '.data/configs.json';
-
-function read() {
-  if (!File.existsSync(dataFile)) {
-    return [];
+export default class FileHelper {
+  constructor(dataFile) {
+    this.dataFile = dataFile;
   }
-  var contents = File.readFileSync(dataFile, 'utf8');
-  if (!contents) {
-    return [];
+
+  read() {
+    if (!File.existsSync(this.dataFile)) {
+      return [];
+    }
+    var contents = File.readFileSync(this.dataFile, 'utf8');
+    if (!contents) {
+      return [];
+    }
+    return JSON.parse(contents);
   }
-  return JSON.parse(contents);
-}
 
-async function write(config) {
-  File.writeFileSync(dataFile, JSON.stringify(config), 'utf8');
+  async write(config) {
+    File.writeFileSync(this.dataFile, JSON.stringify(config), { flag: 'w' });
+  }
 }
-
-export default {
-  read,
-  write
-};

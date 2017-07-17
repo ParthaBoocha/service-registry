@@ -1,6 +1,7 @@
 import FileHelper from './file-helper';
+const fileHelper = new FileHelper('.data/service-registry.json');
 
-let configs = FileHelper.read();
+let configs = fileHelper.read();
 
 async function getOne(service) {
   return configs.find(s => s.service === service);
@@ -31,7 +32,7 @@ async function updateOne(item, shouldWriteFile = true) {
 }
 
 async function writeFile() {
-  FileHelper.write(configs);
+  fileHelper.write(configs);
 }
 
 async function printConfigs() {
