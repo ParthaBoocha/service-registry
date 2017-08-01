@@ -3,8 +3,7 @@ const fs = require('fs');
 let registrations = [
   { plugin: 'inert' },
   { plugin: './api/routes/services' },
-  { plugin: './web/routes/web' },
-  { plugin: './plugins/async-route' }];
+  { plugin: './web/routes/web' }];
 
 if (process.env.NODE_ENV !== 'production') {
   registrations.push({ plugin: {
