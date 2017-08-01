@@ -24,7 +24,7 @@ export default class ServiceRegistry extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <div className={styles.mainContent}>
         <Button className={styles.addButton} icon='add' onClick={this.addNew} accent floating />
         <ConfigList
           items={this.state.configs}

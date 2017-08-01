@@ -9,6 +9,40 @@ body {
   z-index: var(--z-index-highest);
 }
 
-.cards {
+.main-content {
   margin-top: calc(var(--appbar-height) + 20px);
+}
+
+.navigation {
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 100px;
+}
+.navigation > ul {
+  list-style: none;
+}
+.navigation > ul > li {
+  display: inline-block;
+}
+.navigation > ul > li > a {
+  color: var(--color-primary-contrast);
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: var(--appbar-height);
+  margin-right: var(--unit);
+  padding: 0 calc(1.5 * var(--unit));
+  position: relative;
+  text-decoration: none;
+}
+.navigation > ul > li > a.active::after {
+  background-color: var(--color-accent);
+  bottom: 0;
+  content: '';
+  display: block;
+  height: calc(0.3 * var(--unit));
+  left: 0;
+  position: absolute;
+  width: 100%;
 }

@@ -1,9 +1,11 @@
-import FileHelper from './file-helper';
 import ConfigService from './config-service';
 
 describe('Config Service tests', () => {
   beforeEach(() => {
-    spyOn(FileHelper, 'write').and.callFake(() => {});
+    ConfigService.__Rewire__('FileHelper', {
+      read: () => {},
+      write: () => {}
+    });
     ConfigService.update([{
       service: 'xyz',
       url: 'xyzurl',

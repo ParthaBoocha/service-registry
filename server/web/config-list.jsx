@@ -47,7 +47,7 @@ export default class ConfigList extends React.PureComponent {
 
   render() {
     return (
-      <div className={styles.cards}>
+      <div>
         {this.getItems()}
       </div>
     );

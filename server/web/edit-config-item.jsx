@@ -1,6 +1,6 @@
 import React from 'react';
 import ServiceStatusIndicator from './service-status-indicator';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
 

@@ -33,6 +33,7 @@
     "moment": "^2.17.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.1",
     "react-toolbox": "^2.0.0-beta.12",
     "webpack": "^3.0.0",
     "winston": "^2.3.0"
@@ -42,6 +43,7 @@
     "@types/joi": "^10.0.0",
     "@types/lodash": "^4.14.52",
     "@types/winston": "^2.2.0",
+    "babel-plugin-rewire": "^1.1.0",
     "css-loader": "^0.28.4",
     "eslint": "^4.0.0",
     "eslint-config-evolent": "^1.1.0",
