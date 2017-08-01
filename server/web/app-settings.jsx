@@ -7,7 +7,16 @@ import styles from './styles/main';
 export default class AppSettings extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { appSettings: [] };
+    this.state = {
+      appSettings: [],
+      currentEditKey: undefined
+    };
+
+    this.addNew = this.addNew.bind(this);
+    this.onEdit = this.onEdit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+    this.addOrUpdate = this.addOrUpdate.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   async componentWillMount() {
@@ -21,7 +30,13 @@ export default class AppSettings extends React.PureComponent {
         <AppSettingsList
           items={this.state.appSettings}
           refreshItems={this.fetchConfigs}
-          addOrUpdate={this.addOrUpdate} />
+          addOrUpdate={this.addOrUpdate}
+          currentEditKey={this.state.currentEditKey}
+          onEdit={this.onEdit}
+          onDelete={this.onDelete}
+          onSubmit={this.addOrUpdate}
+          onCancel={this.onCancel}
+        />
       </div>);
   }
 
@@ -31,10 +46,41 @@ export default class AppSettings extends React.PureComponent {
   }
 
   addNew() {
+    let withNewSetting = this.state.appSettings;
+    withNewSetting.unshift({
+      key: 'new setting', value: undefined
+    });
+    this.setState({
+      appSettings: withNewSetting,
+      currentEditKey: 'new setting'
+    });
+  }
+
+  async addOrUpdate(key, value) {
+    this.setState({ currentEditKey: undefined });
+    await AppSettingsService.addOrUpdateAppSetting(key, value);
+    this.fetchAppSettings();
+  }
+
+  onEdit(key) {
+    if (this.state.currentEditKey === 'new setting') {
+      let withoutNewSetting = this.state.appSettings;
+      withoutNewSetting.shift();
+      this.setState({
+        appSettings: withoutNewSetting,
+        currentEditKey: key
+      });
+      return;
+    }
+    this.setState({ currentEditKey: key });
+  }
+
+  onDelete(key) {
 
   }
 
-  async addOrUpdate() {
-
+  async onCancel() {
+    this.setState({ currentEditKey: undefined });
+    this.fetchAppSettings();
   }
 };
