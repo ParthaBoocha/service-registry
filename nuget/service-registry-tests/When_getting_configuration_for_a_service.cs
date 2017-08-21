@@ -9,16 +9,16 @@ using NSubstitute;
 
 namespace service_registry_tests
 {
-    [Subject(typeof(ConfigurationService))]
+    [Subject(typeof(ServiceRegistryService<Configuration>))]
     public class when_getting_configuration_for_a_service
     {
         Establish context = () => {
             _cache = Substitute.For<ILocalCache>();
-            Subject = new ConfigurationService(new MockMessageHandler("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]"),
+            Subject = new ServiceRegistryService<Configuration>(new MockMessageHandler("[{\"service\": \"xyz\", \"url\": \"xyzhost\", \"port\": \"1234\"}]"),
             _cache);
         };
 
-        Because of = () => _config = Subject.GetConfiguration(@"http://url", "xyz").Await();
+        Because of = () => _config = Subject.Get(@"http://url", "xyz").Await();
 
         It should_get_service_name = () => _config.Service.ShouldEqual("xyz");
         It should_get_service_url = () => _config.Url.ShouldEqual("xyzhost");
@@ -27,6 +27,6 @@ namespace service_registry_tests
 
         private static Configuration _config;
         private static ILocalCache _cache;
-        private static ConfigurationService Subject;
+        private static ServiceRegistryService<Configuration> Subject;
     }
 }
